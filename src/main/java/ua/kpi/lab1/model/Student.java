@@ -14,7 +14,6 @@ public class Student {
     private String surname;
     private double averageMark;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="faculty_id")
     private Faculty faculty;
 
     public Student(String name, String surname, double averageMark) {

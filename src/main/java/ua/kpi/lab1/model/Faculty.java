@@ -15,7 +15,7 @@ public class Faculty {
     private String name;
     @ManyToOne
     private Institute institute;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "faculty", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Student> studentList;
 
     public Faculty(String name) {

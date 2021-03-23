@@ -42,17 +42,26 @@ public class InstituteController {
         return "faculty";
     }
 
+    @PostMapping( "/faculties/delete/{facultyId}")
+    public String deleteFaculty(@PathVariable int facultyId) {
+        facultyRepo.deleteById(facultyId);
+        return "redirect:/faculties";
+    }
+
+    @PostMapping( "/faculties/student/delete/{studentId}")
+    public String deleteFaculty(@RequestParam int facultyId, @PathVariable int studentId) {
+        studentRepo.deleteById(studentId);
+        return "redirect:/faculties/"+facultyId;
+    }
+
     @PostMapping("/faculties/{facultyId}")
     public String createStudent(@PathVariable int facultyId, @RequestParam String name,
                                 @RequestParam String surname, @RequestParam int averageMark) {
         Faculty faculty = facultyRepo.findById(facultyId).get();
         var student = new Student(name, surname, averageMark);
         student.setFaculty(faculty);
-        student = studentRepo.save(student);
-        System.out.println(student.getFaculty());
-        student = studentRepo.findById(student.getId()).get();
-        System.out.println(student.getFaculty());
-        return "redirect:/faculties/"+facultyId;
+        studentRepo.save(student);
+        return "redirect:/faculties/" + facultyId;
     }
 
     @GetMapping("/faculties/{facultyId}/student/{studentId}")

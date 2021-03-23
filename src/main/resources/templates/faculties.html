@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>KPI</title>
@@ -7,9 +7,12 @@
 <body>
 <h2>KPI</h2>
 <h3>Faculties</h3>
-<ul th:each="faculty : ${faculties}">
-    <a th:href="@{'/faculties/'+${faculty.getId()}}" th:text="${faculty.getName()}">
-</a></ul>
+<div th:each="faculty : ${faculties}">
+    <form method="post" th:action="@{'/faculties/delete/'+${faculty.getId()}}">
+        <input type="image" src="/static/trash.svg">
+        <a th:href="@{'/faculties/'+${faculty.getId()}}" th:text="${faculty.getName()}"></a>
+    </form>
+</div>
 
 <form method="post" action="/faculties">
     <label>
