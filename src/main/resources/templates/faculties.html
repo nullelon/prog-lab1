@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>KPI</title>
+</head>
+<body>
+<h2>KPI</h2>
+<h3>Faculties</h3>
+<ul th:each="faculty : ${faculties}">
+    <a th:href="@{'/faculties/'+${faculty.getId()}}" th:text="${faculty.getName()}">
+</a></ul>
+
+<form method="post" action="/faculties">
+    <label>
+        <input placeholder="Faculty name" name="name">
+    </label>
+    <button>Create!</button>
+</form>
+<p></p>
+<a href="/">Go back</a>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student</title>
+</head>
+<body>
+<table border="2">
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>surname</td>
+        <td>averageMark</td>
+    </tr>
+    <tr>
+        <td th:text="${student.getRecordBookId()}"></td>
+        <td th:text="${student.getName()}"></td>
+        <td th:text="${student.getSurname()}"></td>
+        <td th:text="${student.getAverageMark()}"></td>
+    </tr>
+</table>
+<p></p>
+<a th:href="@{'/faculties/'+${faculty.getId()}}">Go back</a>
+</body>
+</html>

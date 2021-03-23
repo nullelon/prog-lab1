@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+</head>
+<body>
+<h1>Calculator!!!!1</h1>
+<form method="post" action="/calculator" style="text-align: center">
+    <label>
+        <input autocomplete="off" placeholder="a" name="a" th:value="${calcLastData.a}" required>
+    </label>
+    <br>
+    <label>
+        <input autocomplete="off" placeholder="b" name="b" th:value="${calcLastData.b}" required>
+    </label>
+    <br>
+    <label>
+        <input autocomplete="off" placeholder="c" name="c" th:value="${calcLastData.c}" required>
+    </label>
+    <br>
+    <label>
+        <input autocomplete="off" placeholder="d" name="d" th:value="${calcLastData.d}" required>
+    </label>
+    <br>
+
+    <h4 th:text="${calcLastData.result}"></h4>
+
+    <button>Calculate!!!</button>
+</form>
+<br>
+<table border="2" align="center" width="150"
+       height="50">
+    <tr>
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+        <td>d</td>
+        <td>result</td>
+    </tr>
+    <tr th:each="calcData : ${calcDataHistory}">
+        <td th:text="${calcData.a}"></td>
+        <td th:text="${calcData.b}"></td>
+        <td th:text="${calcData.c}"></td>
+        <td th:text="${calcData.d}"></td>
+        <td th:text="${calcData.result}"></td>
+    </tr>
+</table>
+<a href="/">Go back</a>
+</body>
+</html>
