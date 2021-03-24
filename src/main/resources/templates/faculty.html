@@ -11,7 +11,7 @@
     <form method="post" th:action="@{'/faculties/student/delete/'+${student.getId()}}">
         <input hidden name="facultyId" th:value="${faculty.getId()}">
         <input type="image" src="/static/trash.svg">
-        <a th:href="@{'/faculties/'+${faculty.getId()}+'/student/'+${student.getName()}}"
+        <a th:href="@{'/faculties/'+${faculty.getId()}+'/student/'+${student.getId()}}"
            th:text="${student.getName()} + ' ' + ${student.getSurname()}"></a>
     </form>
 </ul>
