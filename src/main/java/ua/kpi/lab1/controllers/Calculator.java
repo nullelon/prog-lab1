@@ -13,35 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class Calculator {
 
-    public class CalcData {
-        public double a;
-        public double b;
-        public double c;
-        public double d;
-        public String result;
-
-        CalcData(String cookieStr) {
-            var splitCookie = cookieStr.split("_");
-            a = Double.parseDouble(splitCookie[0]);
-            b = Double.parseDouble(splitCookie[1]);
-            c = Double.parseDouble(splitCookie[2]);
-            d = Double.parseDouble(splitCookie[3]);
-            result = splitCookie[4];
-        }
-
-        CalcData(String a, String b, String c, String d, String result) {
-            this.a = Double.parseDouble(a);
-            this.b = Double.parseDouble(b);
-            this.c = Double.parseDouble(c);
-            this.d = Double.parseDouble(d);
-            this.result = result;
-        }
-
-        String toCookie() {
-            return a + "_" + b + "_" + c + "_" + d + "_" + result;
-        }
-    }
-
     @GetMapping(value = "/calculator")
     public String calcGet(Model model,
                           @CookieValue(name = "calcLastData", defaultValue = "0_0_0_0_0") String calcLastData,
@@ -89,7 +60,7 @@ public class Calculator {
 
 
         } catch (NumberFormatException e) {
-            CalcData calcData = new CalcData("0","0","0","0", "введи нормальные числа, дорогой пользователь)");
+            CalcData calcData = new CalcData("0", "0", "0", "0", "введи нормальные числа, дорогой пользователь)");
             model.addAttribute("calcLastData", calcData);
         }
         Cookie cookie2 = new Cookie("calcDataHistory", calcDataHistory);
@@ -108,5 +79,34 @@ public class Calculator {
 
     private double calculate(double a, double b, double c, double d) {
         return (3 * a / (Math.cos(a))) + (Math.sqrt((Math.tanh(Math.abs(b) * c)) / Math.log1p(d)));
+    }
+
+    public class CalcData {
+        public double a;
+        public double b;
+        public double c;
+        public double d;
+        public String result;
+
+        CalcData(String cookieStr) {
+            var splitCookie = cookieStr.split("_");
+            a = Double.parseDouble(splitCookie[0]);
+            b = Double.parseDouble(splitCookie[1]);
+            c = Double.parseDouble(splitCookie[2]);
+            d = Double.parseDouble(splitCookie[3]);
+            result = splitCookie[4];
+        }
+
+        CalcData(String a, String b, String c, String d, String result) {
+            this.a = Double.parseDouble(a);
+            this.b = Double.parseDouble(b);
+            this.c = Double.parseDouble(c);
+            this.d = Double.parseDouble(d);
+            this.result = result;
+        }
+
+        String toCookie() {
+            return a + "_" + b + "_" + c + "_" + d + "_" + result;
+        }
     }
 }

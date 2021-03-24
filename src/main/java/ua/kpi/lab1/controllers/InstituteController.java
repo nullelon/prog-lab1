@@ -3,18 +3,17 @@ package ua.kpi.lab1.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ua.kpi.lab1.model.Faculty;
-import ua.kpi.lab1.model.Institute;
 import ua.kpi.lab1.model.Student;
 import ua.kpi.lab1.repository.FacultyRepository;
 import ua.kpi.lab1.repository.StudentRepository;
 
-import java.util.ArrayList;
-
 @Controller
 public class InstituteController {
-//    private static final Institute institute = new Institute("KPI");
 
     @Autowired
     private StudentRepository studentRepo;
@@ -42,16 +41,16 @@ public class InstituteController {
         return "faculty";
     }
 
-    @PostMapping( "/faculties/delete/{facultyId}")
+    @PostMapping("/faculties/delete/{facultyId}")
     public String deleteFaculty(@PathVariable int facultyId) {
         facultyRepo.deleteById(facultyId);
         return "redirect:/faculties";
     }
 
-    @PostMapping( "/faculties/student/delete/{studentId}")
+    @PostMapping("/faculties/student/delete/{studentId}")
     public String deleteFaculty(@RequestParam int facultyId, @PathVariable int studentId) {
         studentRepo.deleteById(studentId);
-        return "redirect:/faculties/"+facultyId;
+        return "redirect:/faculties/" + facultyId;
     }
 
     @PostMapping("/faculties/{facultyId}")

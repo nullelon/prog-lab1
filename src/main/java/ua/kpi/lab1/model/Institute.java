@@ -37,10 +37,6 @@ public class Institute {
         this.id = id;
     }
 
-    public void setFacultyList(List<Faculty> facultyList) {
-        this.facultyList = facultyList;
-    }
-
     public void addFaculty(Faculty faculty) {
         facultyList.add(faculty);
     }
@@ -55,5 +51,9 @@ public class Institute {
 
     public List<Faculty> getFacultyList() {
         return facultyList;
+    }
+
+    public void setFacultyList(List<Faculty> facultyList) {
+        this.facultyList = facultyList;
     }
 }
